@@ -51,12 +51,18 @@ public class AuthenticationController {
     }*/
 
     @PostMapping("/registerTrainer")
-    public ResponseEntity<?> registerTrainer(@RequestParam("email") String email,
+    public ResponseEntity<?> registerTrainer(@RequestParam("username") String username,
+                                             @RequestParam("firstname") String firstname,
+                                             @RequestParam("lastname") String lastname,
+                                             @RequestParam("email") String email,
                                              @RequestParam("password") String password) {
         if (authenticationService.emailExists(email)) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already exists");
         }
         TrainerDTO trainerDTO = new TrainerDTO();
+        trainerDTO.setUsername(username);
+        trainerDTO.setFirstName(firstname);
+        trainerDTO.setLastName(lastname);
         trainerDTO.setEmail(email);
         trainerDTO.setPassword(password);
 
@@ -71,13 +77,19 @@ public class AuthenticationController {
     }
 
     @PostMapping("/registerLearner")
-    public ResponseEntity<?> registerLearner(@RequestParam("email") String email,
+    public ResponseEntity<?> registerLearner(@RequestParam("username") String username,
+                                             @RequestParam("firstname") String firstname,
+                                             @RequestParam("lastname") String lastname,
+                                             @RequestParam("email") String email,
                                              @RequestParam("password") String password) {
         if (authenticationService.emailExists(email)) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already exists");
         }
 
         UserDTO userDTO = new UserDTO();
+        userDTO.setUsername(username);
+        userDTO.setFirstName(firstname);
+        userDTO.setLastName(lastname);
         userDTO.setEmail(email);
         userDTO.setPassword(password);
 
@@ -93,7 +105,7 @@ public class AuthenticationController {
 
 
     @PostMapping("/login")
-    public AuthenticationResponse login(@RequestBody UserDTO userDTO) {
+    public AuthenticationResponse login(@RequestBody User userDTO) {
         return authenticationService.login(userDTO.getEmail(), userDTO.getPassword());
     }
 

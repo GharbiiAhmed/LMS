@@ -118,4 +118,8 @@ public class User implements UserDetails {
     public void setResetToken(String resetToken) {
         this.resetToken = resetToken;
     }
+
+    public String getEmail() {
+        return email;
+    }
 }

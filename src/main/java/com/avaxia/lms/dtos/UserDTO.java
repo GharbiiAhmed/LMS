@@ -1,6 +1,7 @@
 package com.avaxia.lms.dtos;
 
 import com.avaxia.lms.entities.Role;
+import com.avaxia.lms.entities.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -32,6 +33,7 @@ public class UserDTO {
         this.password = password;
         this.roles = roles;
     }*/
+
     public String getEmail() {
         return email;
     }
@@ -63,10 +65,10 @@ public class UserDTO {
         this.firstName = firstName;
     }
     public String getUsername() {
-        return firstName;
+        return username;
     }
-    public void setUsername(String firstName) {
-        this.firstName = firstName;
+    public void setUsername(String username) {
+        this.username = username;
     }
     // Getter and Setter for lastName
     public String getLastName() {

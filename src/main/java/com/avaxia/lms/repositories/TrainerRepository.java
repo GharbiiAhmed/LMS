@@ -14,8 +14,8 @@ public interface TrainerRepository extends JpaRepository<Trainer, Long> {
     //Optional<Trainer> findByEmail(String email);
     //boolean existsByEmail(String email);
 
-    List<Trainer> findByCourseId(Long idCourse); // Use courseId directly here
+    //List<Trainer> findByCourseId(Long idCourse); // Use courseId directly here
 
-    @Query("SELECT t FROM Trainer t WHERE t.course.id = :idCourse") // Use course.id here
-    List<Trainer> findTrainersByCourseId(@Param("idCourse") Long idCourse);
+    //@Query("SELECT t FROM Trainer t WHERE t.course.id = :idCourse") // Use course.id here
+    //List<Trainer> findTrainersByCourseId(@Param("idCourse") Long idCourse);
 }

@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface VerificationTokenRepository extends JpaRepository<VerificationToken,Long> {
     VerificationToken findByToken(String token);
-    void deleteByUser(User user);
-    List<VerificationToken> findByUser(User user);
+    //void deleteByUser(User user);
+    //List<VerificationToken> findByUser(User user);
     VerificationToken findByCode(String code);
 }
