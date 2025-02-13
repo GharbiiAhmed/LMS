@@ -1,9 +1,11 @@
 package com.avaxia.lms.repositories;
 
-import com.avaxia.lms.entities.Assignment;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.avaxia.lms.entities.Assignment;
 
-@Repository
+import java.util.List;
+
 public interface AssignmentRepository extends JpaRepository<Assignment,Long> {
+    List<Assignment> findByCourseId(Long courseId); // To get assignments for a specific course
+
 }
