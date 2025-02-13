@@ -25,5 +25,4 @@ public class Discussion {
 
     private LocalDateTime datePosted;
 
-    // Getters and Setters
 }

@@ -29,5 +29,5 @@ public class Course {
 
     @ManyToOne
     private User user;
-    // Getters and Setters
+
 }

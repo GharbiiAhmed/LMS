@@ -26,5 +26,4 @@ public class UserProgress {
     @OneToMany(mappedBy = "userProgress", cascade = CascadeType.ALL)
     private List<Grade> grades;
 
-    // Getters and Setters
 }

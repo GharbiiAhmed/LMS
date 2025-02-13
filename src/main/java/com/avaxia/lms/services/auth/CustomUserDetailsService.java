@@ -25,12 +25,12 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
 
         // Convert Role to String
-        String role = user.getRole().name();  // Converts the Role enum to a String
+        String role = user.getRole().name();
 
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getUsername())
                 .password(user.getPassword())
-                .roles(role)  // Pass the string role here
+                .roles(role)
                 .build();
     }
 

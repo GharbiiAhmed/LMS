@@ -21,5 +21,4 @@ public class Announcement {
 
     private LocalDateTime datePosted;
 
-    // Getters and Setters
 }

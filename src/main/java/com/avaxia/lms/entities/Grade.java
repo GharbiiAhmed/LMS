@@ -28,5 +28,4 @@ public class Grade {
     @JoinColumn(name = "course_id")  // This defines the foreign key column in the database
     private Course course;
 
-    // Getters and Setters
 }

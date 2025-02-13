@@ -23,6 +23,6 @@ public class Activity {
     private Course course;
     @ManyToOne
     private User user;  // The User associated with the Activity
-    // Getters and Setters
+
 
 }

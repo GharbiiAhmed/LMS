@@ -21,5 +21,4 @@ public class Assignment {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    // Getters and Setters
 }

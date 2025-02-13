@@ -16,5 +16,5 @@ public class Settings {
     @ManyToOne
     @JoinColumn(name = "user_id") // The column in your database that links Settings to User
     private User user;
-    // Getters and Setters
+
 }

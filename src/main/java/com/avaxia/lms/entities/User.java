@@ -23,7 +23,7 @@ public class User implements UserDetails {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private Role role; // Now using Enum
+    private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

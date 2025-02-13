@@ -23,5 +23,4 @@ public class Message {
 
     private LocalDateTime timestamp;
 
-    // Getters and Setters
 }
