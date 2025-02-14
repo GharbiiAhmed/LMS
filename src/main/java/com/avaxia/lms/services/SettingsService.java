@@ -28,4 +28,10 @@ public class SettingsService implements ISettingsService{
     public void deleteSettings(Long settingsId) {
         settingsRepository.deleteById(settingsId);
     }
+
+    @Override
+    public Settings createSettings(Settings settings) {
+        return settingsRepository.save(settings);
+    }
+
 }

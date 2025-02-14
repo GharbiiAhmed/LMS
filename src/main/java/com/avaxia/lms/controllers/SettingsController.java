@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/settings")
+@RequestMapping("/api/settings")
 @AllArgsConstructor
 public class SettingsController {
 
@@ -21,7 +21,10 @@ public class SettingsController {
         user.setId(userId);
         return settingsService.getSettingsByUserId(user);
     }
-
+    @PostMapping
+    public Settings createSettings(@RequestBody Settings settings) {
+        return settingsService.createSettings(settings);
+    }
     @PutMapping
     public Settings updateSettings(@RequestBody Settings settings) {
         return settingsService.updateSettings(settings);

@@ -10,7 +10,7 @@ import com.avaxia.lms.entities.User;
 import java.util.List;
 
 @RestController
-@RequestMapping("/calendar-events")
+@RequestMapping("/api/calendar-events")
 @AllArgsConstructor
 public class CalendarEventController {
 
