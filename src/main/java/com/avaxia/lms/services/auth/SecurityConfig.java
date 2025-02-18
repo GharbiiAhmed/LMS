@@ -26,8 +26,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         //utilisation obligatoir des expression lambda ou bien les refrences csrf depricated si non spring security 6.*
-        http  .csrf(AbstractHttpConfigurer::disable
-                )
+        http.csrf(AbstractHttpConfigurer::disable)
+
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()  // Autoriser les requêtes sans authentification
                         .anyRequest().authenticated()           // Toute autre requête nécessite une authentification
