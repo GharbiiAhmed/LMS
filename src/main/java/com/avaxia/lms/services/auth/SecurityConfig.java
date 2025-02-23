@@ -30,6 +30,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()  // Autoriser les requêtes sans authentification
+                        .requestMatchers("/auth/register").permitAll()
                         .anyRequest().authenticated()           // Toute autre requête nécessite une authentification
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(userDetailsService), UsernamePasswordAuthenticationFilter.class);  // Ajouter le filtre JWT avant le filtre de mot de passe standard

@@ -8,6 +8,9 @@ import com.avaxia.lms.entities.User;
 import com.avaxia.lms.entities.enumerations.Role;
 import com.avaxia.lms.services.auth.JwtUtils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -60,12 +63,21 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password) {
+    public Map<String, String> login(@RequestParam String username, @RequestParam String password) {
         User user = userRepository.findByUsername(username);
         if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
             throw new RuntimeException("Invalid credentials");
         }
-        return JwtUtils.generateToken(user.getUsername());
-    }
-}
 
+        // Generate JWT token
+        String token = JwtUtils.generateToken(user.getUsername());
+
+        // Return token and correct role
+        Map<String, String> response = new HashMap<>();
+        response.put("token", token);
+        response.put("role", user.getRole().name()); // ✅ Correct role
+
+        return response;
+    }
+
+}
