@@ -1,4 +1,5 @@
 package com.avaxia.lms.services;
+import com.avaxia.lms.entities.Content;
 import com.avaxia.lms.entities.Course;
 import com.avaxia.lms.entities.enumerations.Role;
 
@@ -13,4 +14,5 @@ public interface ICourseService {
     Course getCourseByName(String name);
     List<Course> getCoursesByTrainerRole(Role trainerRole);
     List<Course> getCoursesByLearnerRole(Role learnerRole);
+    List<Course> getCoursesByUserId(Long userId);
 }

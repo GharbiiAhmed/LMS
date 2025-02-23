@@ -41,6 +41,8 @@ public class CourseService implements ICourseService{
         return courseRepository.findById(courseId).orElse(null);
     }
 
+
+
     @Override
     public Course getCourseByName(String name) {
         return courseRepository.findByName(name);
@@ -54,5 +56,10 @@ public class CourseService implements ICourseService{
     @Override
     public List<Course> getCoursesByLearnerRole(Role learnerRole) {
         return courseRepository.findByUserRole(learnerRole);
+    }
+
+    @Override
+    public List<Course> getCoursesByUserId(Long userId) {
+        return courseRepository.getCoursesByUserId(userId);
     }
 }

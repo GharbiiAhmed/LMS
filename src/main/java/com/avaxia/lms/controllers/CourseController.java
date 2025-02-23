@@ -79,4 +79,13 @@ public class CourseController {
         List<Course> courses = courseService.getCoursesByLearnerRole(learnerRole);
         return new ResponseEntity<>(courses, HttpStatus.OK);
     }
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Course>> getCoursesByUserId(@PathVariable Long userId) {
+        List<Course> courses = courseService.getCoursesByUserId(userId);
+        if (courses.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);  // Not found if no courses are found
+        }
+        return new ResponseEntity<>(courses, HttpStatus.OK);
+    }
+
 }
