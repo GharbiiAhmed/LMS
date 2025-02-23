@@ -4,21 +4,23 @@
     <h2>Sign up for your account!</h2>
     <p class="lead mb-4">Nice to see you! Please Sign up with your account.</p>
 
-    <form>
+    <form [formGroup]="signupForm" (ngSubmit)="onSignUp()">
       <div class="mb-4">
-        <label for="exampleInputEmail1" class="form-label"
-          >Email address *</label
+        <label for="exampleInputUsername1" class="form-label"
+          >Username *</label
         >
         <div class="input-group input-group-lg">
           <span
             class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
-            ><i class="bi bi-envelope-fill"></i
+            ><i class="bi bi-person-fill"></i
           ></span>
           <input
-            type="email"
+            type="text"
+            formControlName="username"
+            [class.is-invalid]="submitted && form['username'].errors"
             class="form-control border-0 bg-light rounded-end ps-1"
-            placeholder="E-mail"
-            id="exampleInputEmail1"
+            placeholder="Username"
+            id="exampleInputUsername1"
           />
         </div>
       </div>
@@ -32,27 +34,11 @@
           ></span>
           <input
             type="password"
+            formControlName="password"
+            [class.is-invalid]="submitted && form['password'].errors"
             class="form-control border-0 bg-light rounded-end ps-1"
-            placeholder="*********"
+            placeholder="Password"
             id="inputPassword5"
-          />
-        </div>
-      </div>
-
-      <div class="mb-4">
-        <label for="inputPassword6" class="form-label"
-          >Confirm Password *</label
-        >
-        <div class="input-group input-group-lg">
-          <span
-            class="input-group-text bg-light rounded-start border-0 text-secondary px-3"
-            ><i class="fas fa-lock"></i
-          ></span>
-          <input
-            type="password"
-            class="form-control border-0 bg-light rounded-end ps-1"
-            placeholder="*********"
-            id="inputPassword6"
           />
         </div>
       </div>
@@ -70,7 +56,7 @@
 
       <div class="align-items-center mt-0">
         <div class="d-grid">
-          <button class="btn btn-primary mb-0" type="button">Sign Up</button>
+          <button class="btn btn-primary mb-0" type="submit">Sign Up</button>
         </div>
       </div>
     </form>

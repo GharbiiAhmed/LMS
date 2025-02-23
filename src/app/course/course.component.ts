@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService } from '../services/course.service'; // adjust path if needed
+import { CourseService } from '../services/course.service'; // Ensure path is correct
 
 @Component({
   selector: 'app-course',
@@ -17,13 +17,19 @@ export class CourseComponent implements OnInit {
   }
 
   getCourses(): void {
-    this.courseService.getCourse(1).subscribe((data) => { // replace '1' with actual course id or method
-      this.courses = data;
+    this.courseService.getCourses().subscribe({
+      next: (data: any[]) => {
+        console.log('Received courses:', data); // Check if data is received
+        this.courses = data;
+      },
+      error: (error) => {
+        console.error('Error fetching courses', error);
+      }
     });
   }
 
   createCourse(course: any): void {
-    this.courseService.createCourse(course).subscribe((newCourse) => {
+    this.courseService.createCourse(course).subscribe((newCourse: any) => {
       this.courses.push(newCourse);
     });
   }
@@ -40,4 +46,3 @@ export class CourseComponent implements OnInit {
     });
   }
 }
-

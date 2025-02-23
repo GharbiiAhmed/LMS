@@ -18,8 +18,8 @@ export class CourseService {
     return this.http.put<any>(`${this.apiUrl}/${course.id}`, course);
   }
 
-  getCourse(courseId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${courseId}`);
+  getCourses(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
   }
 
   deleteCourse(courseId: number): Observable<void> {

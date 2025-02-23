@@ -1,14 +1,14 @@
 import { Route } from '@angular/router'
 import { DashboardComponent } from './dashboard/dashboard.component'
-import { DeleteAccountComponent } from './delete-account/delete-account.component'
+import { DeleteAccountComponent } from '../shared/delete-account/delete-account.component'
 import { EarningComponent } from './earning/earning.component'
-import { EditProfileComponent } from './edit-profile/edit-profile.component'
+import { EditProfileComponent } from '../shared/edit-profile/edit-profile.component'
 import { ManageCourseComponent } from './manage-course/manage-course.component'
 import { OrderComponent } from './order/order.component'
 import { PayoutComponent } from './payout/payout.component'
 import { QuizComponent } from './quiz/quiz.component'
 import { ReviewComponent } from './review/review.component'
-import { SettingComponent } from './setting/setting.component'
+import { SettingComponent } from '../shared/setting/setting.component'
 import { StudentlistComponent } from './studentlist/studentlist.component'
 
 export const INSTRUCTOR_ROUTES: Route[] = [
@@ -55,16 +55,16 @@ export const INSTRUCTOR_ROUTES: Route[] = [
   {
     path: 'edit-profile',
     component: EditProfileComponent,
-    data: { title: 'Edit Profile' },
+    data: { title: 'Edit Profile Instructor' },
   },
   {
     path: 'setting',
     component: SettingComponent,
-    data: { title: 'Setting' },
+    data: { title: 'Setting Instructor' },
   },
   {
     path: 'delete-account',
     component: DeleteAccountComponent,
-    data: { title: 'Delete Account' },
+    data: { title: 'Delete Account Instructor' },
   },
 ]

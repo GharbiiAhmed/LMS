@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = 'http://localhost:8080/lms/api';
 
   constructor(private http: HttpClient) {}
 
@@ -14,7 +14,7 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/trending-courses`);
   }
 
-  // خدمات إضافية عند الحاجة
+  
   getCourseDetails(courseId: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/courses/${courseId}`);
   }

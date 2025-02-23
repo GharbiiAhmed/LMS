@@ -6,6 +6,9 @@ import { CourseResumeComponent } from './course-resume/course-resume.component'
 import { QuizComponent } from './quiz/quiz.component'
 import { PaymentInfoComponent } from './payment-info/payment-info.component'
 import { BookmarkComponent } from './bookmark/bookmark.component'
+import { SettingComponent } from '../shared/setting/setting.component'
+import { DeleteAccountComponent } from '../shared/delete-account/delete-account.component'
+import { EditProfileComponent } from '../shared/edit-profile/edit-profile.component'
 
 export const STUDENT_ROUTES: Route[] = [
   {
@@ -43,4 +46,19 @@ export const STUDENT_ROUTES: Route[] = [
     component: BookmarkComponent,
     data: { title: 'Wishlist' },
   },
+  {
+      path: 'edit-profile',
+      component: EditProfileComponent,
+      data: { title: 'Edit Profile' },
+    },
+    {
+      path: 'setting',
+      component: SettingComponent,
+      data: { title: 'Setting' },
+    },
+    {
+      path: 'delete-account',
+      component: DeleteAccountComponent,
+      data: { title: 'Delete Account' },
+    },
 ]

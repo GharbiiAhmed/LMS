@@ -1,15 +1,15 @@
-import { login } from '@/app/store/authentication/authentication.actions'
-import { CommonModule } from '@angular/common'
-import { Component, inject } from '@angular/core'
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import {
   FormsModule,
   ReactiveFormsModule,
   UntypedFormBuilder,
+  UntypedFormGroup,
   Validators,
-  type UntypedFormGroup,
-} from '@angular/forms'
-import { RouterLink } from '@angular/router'
-import { Store } from '@ngrx/store'
+} from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../core/service/auth-service.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,36 +19,77 @@ import { Store } from '@ngrx/store'
   styles: ``,
 })
 export class SignInComponent {
-  signinForm!: UntypedFormGroup
-  submitted: boolean = false
-  passwordType: boolean = true
+  signinForm!: UntypedFormGroup;
+  submitted: boolean = false;
+  passwordType: boolean = true;
 
-  public fb = inject(UntypedFormBuilder)
-  store = inject(Store)
+  private fb = inject(UntypedFormBuilder);
+  private authService = inject(AuthService); // Inject AuthService
+  private router = inject(Router);
 
   constructor() {
     this.signinForm = this.fb.group({
-      email: ['user@demo.com', [Validators.required, Validators.email]],
-      password: ['123456', [Validators.required]],
-    })
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
   }
 
   get form() {
-    return this.signinForm.controls
+    return this.signinForm.controls;
   }
 
   onLogin() {
-    this.submitted = true
+    this.submitted = true;
     if (this.signinForm.valid) {
-      const email = this.form['email'].value // Get the username from the form
-      const password = this.form['password'].value // Get the password from the form
-
-      // Login Api
-      this.store.dispatch(login({ email: email, password: password }))
+      const formValues = this.signinForm.getRawValue();
+      const username = formValues.username?.trim() || '';
+      const password = formValues.password?.trim() || '';
+  
+      if (!username || !password) {
+        alert('Please provide both username and password.');
+        return;
+      }
+  
+      // Use AuthService to login
+      this.authService.login(username, password).subscribe({
+        next: (response) => {
+          console.log('Received response:', response);
+  
+          // Set session using AuthService
+          this.authService.setSession(response.token, response.role);
+  
+          // Determine the redirect URL based on the role
+          let redirectUrl = '';
+          switch (response.role) {
+            case 'ADMIN':
+              redirectUrl = '/admin/dashboard';
+              break;
+            case 'TRAINER':
+              redirectUrl = '/instructor/dashboard';
+              break;
+            case 'LEARNER':
+              redirectUrl = '/student/dashboard';
+              break;
+            default:
+              redirectUrl = '/dashboard'; // Default if role is not recognized
+              break;
+          }
+  
+          // If a returnUrl is provided in the query params, use it instead of the default
+          const returnUrl = this.router.parseUrl(this.router.url).queryParams['returnUrl'] || redirectUrl;
+          this.router.navigate([decodeURIComponent(returnUrl)]);  // Navigate to the decoded returnUrl
+        },
+        error: (error) => {
+          console.error('Full error details:', error);
+          const status = error.status || 'Unknown';
+          const message = error.error?.message || error.message || 'Unknown error';
+          console.log('Status:', status);
+          console.log('Error message:', message);
+          alert(`Login failed: ${message} (Status: ${status})`);
+        }
+      });
+    } else {
+      alert('Please fill in all required fields correctly.');
     }
   }
-
-  changeType() {
-    this.passwordType = !this.passwordType
-  }
-}
+}  

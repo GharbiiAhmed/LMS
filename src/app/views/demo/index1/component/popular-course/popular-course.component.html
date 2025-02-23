@@ -1,4 +1,4 @@
-<section>
+<!-- <section>
   <div class="container">
     <div class="row mb-4">
       <div class="col-lg-8 mx-auto text-center">
@@ -522,4 +522,16 @@
       id="course-pills-tabContent"
     ></div>
   </div>
-</section>
+</section> -->
+
+<div class="course-list">
+  <h2>Course List</h2>
+  <ul>
+    <li *ngFor="let course of courses">
+      {{ course.name }}
+      <button (click)="updateCourse(course)">Update</button>
+      <button (click)="deleteCourse(course.id)">Delete</button>
+    </li>
+  </ul>
+  <button (click)="createCourse({name: 'New Course'})">Create Course</button>
+</div>
