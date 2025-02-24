@@ -23,6 +23,7 @@ export class CourseService {
     const headers = this.getAuthHeaders();
     return this.http.post<any>(this.apiUrl, course, { headers });
   }
+  
 
   // Update an existing course
   updateCourse(course: any): Observable<any> {
